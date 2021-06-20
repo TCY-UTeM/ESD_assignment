@@ -15,30 +15,39 @@ osMutexId x_mutex;
 osMutexDef(x_mutex);
 
 osSemaphoreId items;
-
 osSemaphoreDef(items);
 
 osSemaphoreId buffer_size;
-
 osSemaphoreDef (buffer_size);
+
+int *head = 0x00;
+int *tail = 0x00;
+int max_size = 8;
+int y = 0;
+int x = 0;
 
 void get_Thread (void const *argument)
 {
+  for(;;)
+  {
   osSemaphoreWait(items, osWaitForever);
   osMutexWait(x_mutex, osWaitForever);
-      
-       ?get_value
+    y = *tail;
+    tail++
   osMutexRelease(x_mutex);
   osSemaphoreRelease(buffer_size);
-       ?event_process
+  }
 }
 
 void add_Thread (void const *argument)
 {
-      ?event = wait_for_event
+  for(;;)
+  {
   osSemaphoreWait(buffer_size, osWaitForever);
   osMutexWait(x_mutex, osWaitForever);
-      ?add_value
+    x = x+2;
+    *head = x;
+    head+
   osMutexRelease(x_mutex);
   osSemaphoreRelease(items);
 }
