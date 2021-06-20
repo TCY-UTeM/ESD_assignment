@@ -9,4 +9,5 @@
 # Buffer_main.c is the main coding write by our group. In main.c consist 2 buffer which called buffer_1 with size of 8 and buffer_2 with size of 8.
 # buffer_1 is to stored the items that produce by thread chef_1 and chef_2.
 # buffer_2 is to stored a recored data that how many items had sent out by thread waiter_1 and waiter_2.
-# When chef_1 and chef_2 produce something it will stored to buffer_1 and waiter_1 and waiter_2 will sent out the thing and it will update buffer_2 to let cashier know what is the item sent out and the cashier will print out the bils. 
+# When chef_1 and chef_2 produce something it will stored to buffer_1 and waiter_1 and waiter_2 will sent out the thing, when the items had sent out, the space in buffer_1 will increase.
+# thread waiter_1 and waiter_2 will update buffer_2 to let cashier know how many item sent out and the cashier will print out the bils. 
