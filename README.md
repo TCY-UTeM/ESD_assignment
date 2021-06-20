@@ -4,7 +4,7 @@
 # The buffer size is 8.
 # 
 #
-# Buffer_testing.c is the first version of our code but it doesn't work.
+# Buffer_testing1.c is the first version of our code but it doesn't work.
 # Buffer_testing2.c is the second version of our code that based on the coding given by our lecturer.
 # Buffer_main.c is the main coding write by our group. In main.c consist 2 buffer which called buffer_1 with size of 8 and buffer_2 with size of 8.
 # buffer_1 is to stored the items that produce by thread chef_1 and chef_2.
