@@ -17,16 +17,14 @@ osSemaphoreDef(item_semaphore);
 osSemaphoreId space_semaphore;
 osSemaphoreDef(space_semaphore);
 
-long int x=0;
-long int i=o;
-long int j=0;
-
-const unsigned int N = 4;
+const unsigned int N = 8;
 unsigned char buffer[N];
 unsigned int insertPtr = 0;
 unsigned int removePtr = 0;
+unsigned char x = 0x30;
 
-void put(unsigned char an_item){
+void put(unsigned char an_item)
+{
    osSemaphoreWait(space_semaphore,osWaitForever);
    osMutexWait(x_mutex,osWaitForever);
    buffer[insertPtr] = an_item;
@@ -35,7 +33,8 @@ void put(unsigned char an_item){
    osSemaphoreRelease(item_semaphore);
 }
 
-unsigned char get(){
+unsigned char get()
+{
     unsigned int rr = 0xff;
     osSemaphoreWait(item_semaphore, osWaitForever);
     osMutexWait(x_mutex, osWaitForever);
@@ -46,22 +45,32 @@ unsigned char get(){
     return rr;
 }
 
-int loopcount = 20;
 void x_thread1 (void const *argument)
 { 
    //producer
-   unsigned char item = 0x30;
-   for(; i<loopcount; i++){
-        put(item++);
+   a:
+   for(;;)
+   {
+	if(x<0x38)
+	{
+          put(item++);
+	}
+	else
+	{
+	  x = 0x30;
+	  goto a;
+	}
     }
 }
+
 void X_Thread2 (void const *argument)
 {
     //consumer
    unsigned int data = 0x00;
-   for(; j<loopcount; j++){
+   for(;;)
+   {
         data = get();
-        SendChar(data(;
+        SendChar(data);
    }
 }
 
