@@ -28,13 +28,6 @@ osEvent result;
 osMutexId x_mutex;
 osMutexDef(x_mutex);
 
-osSemaphoreId ren1;
-
-osSemaphoreDef(ren1);
-osSemaphoreId ren2;
-
-osSemaphoreDef(ren2);
-
 osSemaphoreId items_1;
 
 osSemaphoreDef(items_1);
@@ -149,10 +142,8 @@ int main (void)
    
    USART1_Init();
    x_mutex = osMutexCreate(osMutex(x_mutex));
-   ren1 = osSemaphoreCreate(osSemaphore(ren1), 0);      // Rendezvous 1
-   ren2 = osSemaphoreCreate(osSemaphore(ren2), 0);      // Rendezvous 2
    items_1 =  osSemaphoreCreate(osSemaphore(items_1), 0);
-   space_1 =  osSemaphoreCreate(osSemaphore(ren2), N);
+ 
 
    Q_LED = osMessageCreate(osMessageQ(Q_LED), NULL);
  
